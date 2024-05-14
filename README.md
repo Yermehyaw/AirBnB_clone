@@ -29,7 +29,9 @@ $ ./console.py
 (hbnb) help
 
 Undocumented commands:
+
 =======================================
+
 
 create   show   destroy   all   update
 
