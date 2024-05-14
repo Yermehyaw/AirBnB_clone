@@ -30,6 +30,7 @@ $ ./console.py
 
 Undocumented commands:
 =======================================
+
 create   show   destroy   all   update
 
 (hbnb) create BaseModel
