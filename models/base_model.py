@@ -31,15 +31,15 @@ class BaseModel():
         if kwargs is None:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.today()
-#           self.updated_at = datetime.today()
+            self.updated_at = datetime.today()
         else:
             for attr, value in kwargs.iteritems():
                 if attr == "id":
                     self.id = value
-#                elif attr == "created_at":
-#                   self.ctreated_at = value
-#               elif attr == "updated_at":
-#                   self.updated_at = value
+                elif attr == "created_at":
+                   self.ctreated_at = value
+                elif attr == "updated_at":
+                   self.updated_at = value
 
     def __str__(self):
         """Returns an augmented string representation of the object
@@ -48,7 +48,7 @@ class BaseModel():
         None
 
         """
-#        return f""
+        return f"[{self.__class__}] ({self.id}) <{self.__dict__}>"
 
     def save(self):
         """Updates the time of the object after an edit
@@ -67,4 +67,7 @@ class BaseModel():
         None
 
         """
-        
+        # All instance attributes should be returned in the dict via self.__dict__ regardless
+        # whether they were instatiated
+        return {'__class__': self.__class___, 'updated_at': updated_at.isoformat(), 'id':self.id, 'created_at': created_at.isoformat()}
+
