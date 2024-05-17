@@ -51,7 +51,7 @@ class BaseModel():
         None
 
         """
-        return f"[{self.__class__}] ({self.id}) <{self.__dict__}>"
+        return f"[{self.__class__.__name__}] ({self.id}) <{self.__dict__}>"
 
     def save(self):
         """Updates the time of the object after an edit
@@ -70,8 +70,8 @@ class BaseModel():
         None
 
         """
-        # All instance attributes should be returned in the dict via
-        # self.__dict__ regardless whether they were initialized by __init__
-        return dict['__class__': self.__class__, 'updated_at':
-                datetime(int(self.updated_at)).isoformat(), 'id': self.id,
-                'created_at': datetime(int(self.created_at)).isoformat()]
+        self.__dict__['created_at'] = self.created_at.isoformat()
+        self.__dict__['updated_at'] = self.updated_at.isoformat()
+        # Add a key: class name, to the objlects dict attribute
+        self.__dict__.update({'__class__': self.__class__.__name__})
+        return self.__dict__
