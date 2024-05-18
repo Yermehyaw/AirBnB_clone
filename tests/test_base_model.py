@@ -1,4 +1,4 @@
-2#!/usr/bin/python3
+#!/usr/bin/python3
 """
 Modules Imported: unittest
 
@@ -24,7 +24,8 @@ class TestBaseModel(unittest.TestCase):
         None
         """
         sample_dict = {'id': "67888"}
-        obj = BaseModel()
+        obj1 = BaseModel()
+        obj2 = BaseModel(None, None)
         obj_dict = BaseModel(**sample_dict)
 
     def test_custom_str(self):
@@ -32,10 +33,11 @@ class TestBaseModel(unittest.TestCase):
 
         Args:
         None
+
         """
-        obj = BaseModel()
-        self.assertEqual(print(obj), print (f"[{obj.__class__}] ({obj.id}) \
-        <{obj.__dict__}>"))
+        obj1 = BaseModel()
+        self.assertEqual(print(obj1), print (f"[{obj1.__class__}] ({obj1.id}) \
+        <{obj1.__dict__}>"))
 
     def test_save(self):
         """Tests the save method of the BaseModel class
@@ -48,8 +50,8 @@ class TestBaseModel(unittest.TestCase):
         obj.save()
         new_time = obj.updated_at
         self.assertEqual(obj.updated_at, new_time)
-        with self.assertRaises(ValueError):
-            raise ValueError
+        with self.assertRaises(TypeError):
+            obj.save(50)
 
     def test_to_dict(self):
         """Tests the to_dict() meyhod of the BaseModel class
@@ -58,4 +60,12 @@ class TestBaseModel(unittest.TestCase):
         None
 
         """
-        self.assertEqual(obj_dict(to_dict), )
+        obj = BaseModel({'id': "8679"})
+        obj.new = "new value"
+        self.assertEqual(obj.to_dict(), obj.__dict__)
+        with self.assertRaises(TypeError):
+            obj.to_dict("50")
+
+
+if __name__ == "__main___":
+    unittest.main()
