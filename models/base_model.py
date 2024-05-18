@@ -2,11 +2,13 @@
 """
 Modules Imported: uuid, datetime, json
 
+models: python package
 uuid: Generates random user id
 datetime: Generate time
 json: Serializes and deserializes a python object
 
 """
+import models
 import uuid
 from datetime import datetime
 import json
@@ -42,6 +44,8 @@ class BaseModel():
                     self.created_at = datetime.fromisoformat(value)
                 elif attr == "updated_at":
                     self.updated_at = datetime.fromisoformat(value)
+            # Add the default instance storage to the __objects
+            models.storage.new(models.storage)
 
     def __str__(self):
         """Returns an augmented string representation of the object
@@ -60,6 +64,8 @@ class BaseModel():
 
         """
         self.updated_at = datetime.utcnow()
+        # Serialize the storage instance
+        models.storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of the __dict__
