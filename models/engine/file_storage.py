@@ -3,8 +3,7 @@
 """
 Modules Imported: json
 
-json
-serializes and deserializes python objects
+json; serializes and deserializes python objects
 
 """
 import json
@@ -19,7 +18,7 @@ class FileStorage():
     __objects (dict): dictionary of all instances
 
     """
-    __file_path = "./json_file.json"
+    __file_path = "file.json"  # sane as ./file.json
     """str: file where all instances are saved as a json string
     """
     __objects = {}
@@ -63,8 +62,10 @@ class FileStorage():
         obj (obj): instance of an acceptable class
 
         """
-        FileStorage.__objects = FileStorage.__objects + 
-        {f"{obj.__class__.__name__}.{obj.id}": obj}  ###
+        class_name = obj.__class__.__name__
+        obj_class_id = f"{class_name}.{obj.id}"
+#        self.__objects[obj_class_id] = obj.to_dict
+        FileStorage.__objects.update({obj_class_id: obj.to_dict()})
 
     def save(self):
         """Serializes __objects to a JSON string and stores it in __filr_path
@@ -81,7 +82,7 @@ class FileStorage():
                 print("JSON file is unavailable")
 
     def reload(self):
-        """Deserializes JSON file to a div=ct rep of the instances of 
+        """Deserializes JSON file to a dict rep of the instances of
         their respective classes and saves them in __objects
 
         Args:
@@ -93,4 +94,3 @@ class FileStorage():
                 FileStorage.__objects = json.load(f)
         except Exception:
             pass
-
