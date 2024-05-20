@@ -35,7 +35,7 @@ class TestFileStorage(unittest.TestCase):
         self.obj3 = FileStorage()
 
     def test_all(self):
-        """Test the all metgod of FileStorage class
+        """Test the all() method of FileStorage class
 
         Args:
         None
@@ -46,13 +46,14 @@ class TestFileStorage(unittest.TestCase):
             self.obj1.all(50)
 
     def test_new(self):
-        """Tesrs the mthod that adds a new object to the FieStorage variable
+        """Tesrs the new() method that adds a new object to the FieStorage
+        variable
 
         Args:
         None
 
         """
-        self.obj1.new(obj2)
+        self.obj1.new(self.obj2)
         with self.assertNotRaises(Exception):  # obj2 was successfully added?
             self.obj1.objects[f"{self.obj1.__class__.__name__}.{self.obj1.id}"]
         with self.assertRaises(TypeError):
@@ -81,7 +82,7 @@ class TestFileStorage(unittest.TestCase):
             self.obj1.file_path(50)
 
     def test_reload(self):
-        """Tests the JSON load method of the FileStorage class
+        """Tests the reload() method that loads a JSON file
 
         Args:
         None
@@ -93,11 +94,11 @@ class TestFileStorage(unittest.TestCase):
         with self.assertNotRaises(Exception):
             self.obj1.reload()
 
-        # Test id the fike dosent exist
+        # Test id the file dosent exist
         with self.assertRaises(FileNotFoundError, IOError):
-            # there is no prior config as the file is created if it dosent exist
-            # thus this test is more or less redundant. it is created just to
-            # fufill all righteousness
+            # there is no prior config as the file is created if it dosent
+            # exist, thus this test is more or less redundant. it is
+            # created just to fufill all righteousness
             self.obj1.reload()
 
         with self.asserRaises(TypeError):
