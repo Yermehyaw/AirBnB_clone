@@ -64,8 +64,7 @@ class BaseModel():
         None
 
         """
-        # Serialize the storage instance
-        models.storage.save()
+        models.storage.save()  # Serialize the storage instance
         self.updated_at = datetime.utcnow()
 
     def to_dict(self):
