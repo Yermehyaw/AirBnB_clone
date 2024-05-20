@@ -45,8 +45,9 @@ class BaseModel():
                     self.created_at = datetime.fromisoformat(value)
                 elif attr == "updated_at":
                     self.updated_at = datetime.fromisoformat(value)
+        if kwargs == {} or kwargs is None:
             # Add the default instance storage to the __objects
-            models.storage.new(models.storage)
+            models.storage.new(self)
 
     def __str__(self):
         """Returns an augmented string representation of the object
@@ -64,9 +65,8 @@ class BaseModel():
         None
 
         """
+        models.storage.save()  # Serialize the storage instance
         self.updated_at = datetime.utcnow()
-        # Serialize the storage instance
-        models.storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of the __dict__
