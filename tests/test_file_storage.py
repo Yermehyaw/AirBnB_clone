@@ -1,17 +1,19 @@
 #!/usr/bin/python3
 
 """
-Modules Imported: unittest, json, file_storage
+Modules Imported: unittest, json, file_storage, os
 
 unittest:tests python modules
 json: serializes and deserializes python objects
 Filestorage: Class in the file_storage module that stores and retrieves objects
 from a json file
+os: access shell commannds from the py script
 
 """
 import unittest
 import json
 from models.engine.file_storage import FileStorage
+import os
 
 
 class TestFileStorage(unittest.TestCase):
@@ -77,3 +79,30 @@ class TestFileStorage(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             self.obj1.file_path(50)
+
+    def test_reload(self):
+        """Tests the JSON load method of the FileStorage class
+
+        Args:
+        None
+
+        """
+        # Test if the json file is empty
+        self.obj1.file_path("empty_file.json")
+        self.obj1.save()
+        with self.assertNotRaises(Exception):
+            self.obj1.reload()
+
+        # Test id the fike dosent exist
+        with self.assertRaises(FileNotFoundError, IOError):
+            # there is no prior config as the file is created if it dosent exist
+            # thus this test is more or less redundant. it is created just to
+            # fufill all righteousness
+            self.obj1.reload()
+
+        with self.asserRaises(TypeError):
+            self.obj1.reaload("Invalid arg")
+
+
+if __name__ == "__main__":
+    unittest.main()
