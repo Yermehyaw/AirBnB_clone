@@ -51,9 +51,29 @@ class TestFileStorage(unittest.TestCase):
 
         """
         self.obj1.new(obj2)
-        with self.assertNotRaises(Exception):  # test if the ob2 is added
+        with self.assertNotRaises(Exception):  # obj2 was successfully added?
             self.obj1.objects[f"{self.obj1.__class__.__name__}.{self.obj1.id}"]
         with self.assertRaises(TypeError):
             self.obj1.new()
         with self.assertRaises(TypeError):
             self.obj1.new(obj2, obj3)
+
+    def test_save(self):
+        """Tests the save() method that serializes a class
+
+        Args:
+        None
+
+        """
+        self.obj1.save()
+        self.assertTrue(os.path.getsize(self.obj1.file_path) > 0,
+                        "JSON file is empty")
+
+        self.obj1.file_path("new_file.json")
+        self.assertEqual(self.obj1.file_path, "new_file.json")
+
+        with self.assertRaises(TypeError):
+            self.obj1.file_path("")
+
+        with self.assertRaises(TypeError):
+            self.obj1.file_path(50)
