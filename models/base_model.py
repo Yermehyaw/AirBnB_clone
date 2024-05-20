@@ -3,7 +3,7 @@
 Modules Imported: uuid, datetime, json
 
 models: python package
-uuid: Generates random user id
+uuid: GeneratBO[Oes random user id
 datetime: Generate time
 json: Serializes and deserializes a python object
 
@@ -37,6 +37,7 @@ class BaseModel():
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
         if kwargs != {} and kwargs is not None:
+            B
             for attr, value in kwargs.items():
                 if attr == "id":
                     self.id = value
