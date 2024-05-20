@@ -44,7 +44,34 @@ class FileStorage():
         dict_rep (dict): dictionary to be saved in __objects
 
         """
-        FileStorage.__objects = dict_rep
+        if isinstance(dict_rep , dict):
+            FileStorage.__objects = dict_rep
+        else:
+            raise TypeError("Invalid argument")
+
+    @property
+    def file_path(self):
+        """Property getter for __file_path
+
+        Args:
+        None
+
+        """
+        return FileStorage.__file_path
+
+    @file_path.setter
+    def file_path(self, new_path):
+        """Property setter for __file_path
+
+
+        Args:
+        None
+
+        """
+        if isinstance(new_path, str) and new_path != "":
+            FileStorage.__file_path = new_path
+        else:
+            raise TypeError("Invalid argument")
 
     def all(self):
         """Returns all objects stored in __objects
@@ -64,7 +91,6 @@ class FileStorage():
         """
         class_name = obj.__class__.__name__
         obj_class_id = f"{class_name}.{obj.id}"
-#        self.__objects[obj_class_id] = obj.to_dict
         FileStorage.__objects.update({obj_class_id: obj.to_dict()})
 
     def save(self):
@@ -74,7 +100,7 @@ class FileStorage():
         None
 
         """
-        if FileStorage.__file_path is not None and FileStorage != "":
+        if isinstance(FileStorage.__file_path, str) and FileStorage != "":
             try:
                 with open(FileStorage.__file_path, "w") as f:
                     json.dump(FileStorage.__objects, f)

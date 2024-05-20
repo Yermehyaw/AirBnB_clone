@@ -11,6 +11,7 @@ Base class for all Airbnb clone objects
 import unittest
 from models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
     """Tests the BaseModel claass
 
@@ -36,7 +37,7 @@ class TestBaseModel(unittest.TestCase):
 
         """
         obj1 = BaseModel()
-        self.assertEqual(print(obj1), print (f"[{obj1.__class__}] ({obj1.id}) \
+        self.assertEqual(print(obj1), print(f"[{obj1.__class__}] ({obj1.id}) \
         <{obj1.__dict__}>"))
 
     def test_save(self):
