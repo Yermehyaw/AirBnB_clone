@@ -55,7 +55,7 @@ class BaseModel():
         None
 
         """
-        return f"[{self.__dict__['__class__']}] ({self.__dict__['id']}) <{self.__dict__}>"
+        return f"[{self.__class__.__name__}] ({self.id}) <{self.__dict__}>"
 
     def save(self):
         """Updates the time of the object after an edit
