@@ -16,19 +16,19 @@ class HBNBCommand(cmd.Cmd):
     None (All attributes used are inherited from )
 
     """
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     """Change the default prompt of the Cmd class
     """
 
-    def do_quit(self, invalid_param=None):
+    def do_quit(self, line):
         """Exit the command interpreter
 
         Args:
         None
 
         """
-        if invalid_param != None:
-            print "Usage: quit"
+        if line != "":
+            print("Usage: quit")
             return
         else:
             return True  # returns True to break the cmdloop()
@@ -42,13 +42,16 @@ class HBNBCommand(cmd.Cmd):
         """
         print("Exit command to quit the program")
 
-    def do_EOF(self):
+    def do_EOF(self, line=""):
         """Exit the command interpreter
 
         Args:
         None
 
         """
+        if line != "":
+            print("Usage: EOF")
+            return
         return True
 
     def help_EOF(self):
@@ -68,3 +71,7 @@ class HBNBCommand(cmd.Cmd):
 
         """
         pass  # do nothing
+
+
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
