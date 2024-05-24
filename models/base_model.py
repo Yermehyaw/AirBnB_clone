@@ -37,7 +37,6 @@ class BaseModel():
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
         if kwargs != {} and kwargs is not None:
-            B
             for attr, value in kwargs.items():
                 if attr == "id":
                     self.id = value
