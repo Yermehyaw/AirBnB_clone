@@ -1,0 +1,10 @@
+/* Webpage footer elem styling */
+footer {
+    color: green;
+    height: 60px;
+    width: 100%:;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
