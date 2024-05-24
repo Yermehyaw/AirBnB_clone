@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
 """
-Modules Imported: json
+Modules Imported: json, os
 
 json; serializes and deserializes python objects
+os: execute shell commannds from a py module
 
 """
 import json
+import os
 
 
 class FileStorage():
@@ -44,7 +46,7 @@ class FileStorage():
         dict_rep (dict): dictionary to be saved in __objects
 
         """
-        if isinstance(dict_rep , dict):
+        if isinstance(dict_rep, dict):
             FileStorage.__objects = dict_rep
         else:
             raise TypeError("Invalid argument")
@@ -106,6 +108,8 @@ class FileStorage():
                     json.dump(FileStorage.__objects, f)
             except Exception:
                 print("JSON file is unavailable")
+        else:
+            raise TypeError("File location in unavailable")
 
     def reload(self):
         """Deserializes JSON file to a dict rep of the instances of
@@ -115,8 +119,11 @@ class FileStorage():
         None
 
         """
-        try:
-            with open(FileStorage.__file_path, "r") as f:
-                FileStorage.__objects = json.load(f)
-        except Exception:
-            pass
+        if os.path.isfile(FileStorage.__file_path):
+            try:
+                with open(FileStorage.__file_path, "r") as f:
+                    FileStorage.__objects = json.load(f)
+            except Exception:
+                pass
+            else:
+                pass
