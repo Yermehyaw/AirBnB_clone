@@ -7,7 +7,7 @@ body {
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.image-icon {
+title.image-icon {
     background-image: url("../images/icon.png");
     background-repeat: no-repeat;
 }
