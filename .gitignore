@@ -2,3 +2,4 @@ main.py
 models/__pycache__/*
 models/engine/__pycache__/
 tests/__pycache__/*
+W3C-Validator/
