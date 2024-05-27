@@ -1,13 +1,4 @@
 /*Webpage filter for search button styling */
-div.container {
-    width: 75%;
-    max-width: 1000px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 div.container>section.filters {
     background-color: white;
     height: 70px;

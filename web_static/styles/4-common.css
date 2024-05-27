@@ -11,3 +11,12 @@ title.image-icon {
     background-image: url("../images/icon.png");
     background-repeat: no-repeat;
 }
+
+div.container {
+    width: 75%;
+    max-width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
