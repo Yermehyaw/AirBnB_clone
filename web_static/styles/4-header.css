@@ -9,7 +9,7 @@ header {
 }
 
 
-div.image-logo {
+header>div.image-logo {
     height: 70px;
     width: 100%;
     background-image: url("../images/logo.png");
