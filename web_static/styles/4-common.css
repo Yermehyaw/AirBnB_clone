@@ -1,0 +1,22 @@
+/* Webpage body elem styling */
+body {
+    margin: 0;
+    padding: 0;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+title.image-icon {
+    background-image: url("../images/icon.png");
+    background-repeat: no-repeat;
+}
+
+div.container {
+    width: 75%;
+    max-width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
